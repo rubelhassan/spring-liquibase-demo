@@ -25,7 +25,10 @@ create table if not exists tasks
             on delete cascade
 );
 
+create sequence if not exists tasks_id_seq;
+create sequence if not exists users_id_seq;
+
 --rollback DROP TABLE IF EXISTS tasks;
 --rollback DROP TABLE IF EXISTS users;
-
-
+--rollback DROP SEQUENCE IF EXISTS tasks_id_seq;
+--rollback DROP SEQUENCE IF EXISTS users_id_seq;

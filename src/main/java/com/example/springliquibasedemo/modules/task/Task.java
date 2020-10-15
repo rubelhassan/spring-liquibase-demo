@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.hateoas.server.core.Relation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -18,9 +19,10 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 @Entity
 @Table(name = "tasks")
+@Relation(value = "task", collectionRelation = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
