@@ -224,7 +224,7 @@ spring.liquibase.enabled=false
 
 ## Conclusion 
 This is not a complete guide on Liquibase, please refer to the official doc if you’re interested to learn more about a 
-specific scenario. Liquibase is based on Martin Fowler’s Evolutionary Database - an article that covers the 
+specific scenario. Liquibase is based on [Martin Fowler’s Evolutionary Database](https://martinfowler.com/articles/evodb.html) - an article that covers the 
 concepts and practices of Evolutionary Database Architecture.
 
 
