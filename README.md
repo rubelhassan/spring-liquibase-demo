@@ -1,7 +1,10 @@
 # Spring Liquibase Integration Demo
 
 * [Overview](#overview)
-* [How to Run This Project](#how-to-run-this-project)
+* [Running the Project Locally](#running-the-project-locally)
+  + [Requirements](#requirements)
+  + [Run with Docker](#run-with-docker)
+  + [Run with JAVA](#run-with-java)
 * [Introduction to Liquibase](#introduction-to-liquibase)
   + [Liquibase CLI Installation](#liquibase-cli-installation)
   + [Changeset](#changeset)
@@ -14,29 +17,39 @@
   + [Commands to Update and Rollback in Liquibase with Maven](#commands-to-update-and-rollback-in-liquibase-with-maven)
 * [Liquibase and Spring Boot](#liquibase-and-spring-boot)
 * [Conclusion](#conclusion)
+* [References](#references)
   
 # Overview
 This project demonstrates examples of Liquibase integration with Spring Boot and Maven and how to manage database schema
 evolution over time. 
 
-## How to Run This Project
-This is a simple RESTful web service provides endpoints to create tasks and assign them to users. This project can be 
-deployed easily with Docker.
+## Running the Project Locally
+### Requirements
+* [Java 8](https://www.java.com/en/download/help/java8.html)
+* [Maven](http://maven.apache.org/)
+* [Docker](https://www.docker.com/) (easier to deploy but not mandatory)
+* [PostgreSQL](https://www.postgresql.org/) (mandatory if not using Docker)
+> Please make sure the above requirements are available on your local machine, please see the references section. 
+
+Before running the project please make sure to build the project JAR file using following command
 ```
 ./mvnw clean package
 ```
+
+### Run with Docker
 ```
 docker-compose up
 ```
-The project should be up and running on port `8080` on your localhost. You can access [project's Swagger UI](http://127.0.0.1:8080/swagger-ui/) 
-for more details on REST endpoints.
- 
+
+### Run with JAVA 
 If docker is not installed on your machine then you can deploy JAR file directly, in that case try to change configuration at
-`application.properties`
+`application.properties` file.
 ```
-./mvnw clean package
 java -jar -Dspring.config.location=src/main/resources/application.properties target/spring-liquibase-demo-0.0.1-SNAPSHOT.jar
 ```
+The project should be up and running on port `8080` on your localhost. This is a simple RESTful web service provides 
+endpoints to create users and manage their tasks. You can access [project's Swagger UI](http://127.0.0.1:8080/swagger-ui/) 
+for more details on REST endpoints.
 
 ## Introduction to Liquibase
 Liquibase Community is an open source project that helps rapidly track, version, and deploy database schema changes. 
@@ -51,6 +64,8 @@ available. So in this case it's better to use Liquibase CLI and gives more contr
 Liquibase uses changeset to identify each change to the database. Each changeset has an “id” and “author” attribute 
 which, along with the directory and file name of the changelog file, uniquely identify a change. A changeset can be 
 written in SQL, XML, YAML, and JSON formats.
+
+An example of changeset in SQL format.
 ```sql
 --changeset Bob:157
  CREATE TABLE person (
@@ -223,9 +238,11 @@ spring.liquibase.enabled=false
 ```
 
 ## Conclusion 
-This is not a complete guide on Liquibase, please refer to the official doc if you’re interested to learn more about a 
-specific scenario. Liquibase is based on [Martin Fowler’s Evolutionary Database](https://martinfowler.com/articles/evodb.html) - an article that covers the 
+This is not a complete guide on Liquibase, please refer to the [official liquibase doc](https://docs.liquibase.com/) 
+if you’re interested to learn more about a specific scenario. Liquibase is based on 
+[Martin Fowler’s Evolutionary Database](https://martinfowler.com/articles/evodb.html) - an article that covers the 
 concepts and practices of Evolutionary Database Architecture.
 
-
-
+## References
+* [Liquibase Community](https://www.liquibase.org/community)
+* [Spring Boot Project](https://spring.io/projects/spring-boot)
