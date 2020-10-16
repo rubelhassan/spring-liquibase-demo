@@ -3,8 +3,8 @@
 --changeset rubel:0000_1 splitStatements:true endDelimiter:;
 create sequence if not exists hibernate_sequence;
 -- ids up to 100 are reserved for testing purpose
-create sequence if not exists tasks_id_seq start 100 increment 1;
-create sequence if not exists users_id_seq start 100 increment 1;
+create sequence if not exists tasks_id_seq start 101 increment 50;
+create sequence if not exists users_id_seq start 101 increment 50;
 
 create table if not exists users
 (

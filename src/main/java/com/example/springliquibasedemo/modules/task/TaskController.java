@@ -43,6 +43,9 @@ public class TaskController {
         if (task.getType() == null) {
             task.setType(TODO);
         }
+        if (task.getUser() != null ) {
+            task.setUser(userRepository.findById(task.getUser().getId()).orElse(null));
+        }
         taskRepository.save(task);
         return ResponseEntity
                 .created(linkTo(TaskController.class).slash(task.getId()).toUri())
@@ -53,9 +56,11 @@ public class TaskController {
     public ResponseEntity<TaskResource> updateTask(@PathVariable("id") Long id,
                                                    @RequestBody @Valid Task task) throws TaskNotFoundException, UserNotFoundException {
         taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("No task found with id: " + id));
-        if (task.getUser() != null && !userRepository.existsById(task.getUser().getId())) {
-            throw new UserNotFoundException("Invalid user provided to update task");
+        if (task.getUser() != null ) {
+            task.setUser(userRepository.findById(task.getUser().getId())
+                    .orElseThrow(() -> new UserNotFoundException("Invalid user provided to update task")));
         }
+        taskRepository.save(task);
         return ResponseEntity
                 .created(linkTo(TaskController.class).slash(task.getId()).toUri())
                 .body(new TaskResource(task));

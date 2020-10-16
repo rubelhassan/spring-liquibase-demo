@@ -1,5 +1,6 @@
 package com.example.springliquibasedemo.modules.task;
 
+import com.example.springliquibasedemo.modules.user.UserController;
 import lombok.Getter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
@@ -16,5 +17,8 @@ public class TaskResource extends RepresentationModel<TaskResource> {
         this.task = task;
         add(linkTo(TaskController.class).withRel("tasks"));
         add(linkTo(TaskController.class).slash(task.getId()).withSelfRel());
+        if (task.getUser() != null) {
+            add(linkTo(UserController.class).slash(task.getUser().getId()).withRel("user"));
+        }
     }
 }
