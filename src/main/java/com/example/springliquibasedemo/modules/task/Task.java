@@ -22,7 +22,8 @@ import javax.validation.constraints.NotEmpty;
 @Relation(value = "task", collectionRelation = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="tasks_id_generator", sequenceName = "tasks_id_seq", initialValue=100)
     private Long id;
 
     @NotEmpty
