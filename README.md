@@ -25,7 +25,7 @@ evolution over time.
 
 ## Running the Project Locally
 ### Requirements
-* [Java 8](https://www.java.com/en/download/help/java8.html)
+* [JDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 * [Maven](http://maven.apache.org/)
 * [Docker](https://www.docker.com/) (easier to deploy but not mandatory)
 * [PostgreSQL](https://www.postgresql.org/) (mandatory if not using Docker)
